@@ -1,11 +1,7 @@
-def star():
-    n=int(input())
-    star=' '*(n-1)+'*'
-    print(star)        
+import sys
+ 
+inp = int(input())
+for i in range(inp):
+        a,b = map(int, sys.stdin.readline().split())
+        print(a+b)
 
-    for i in range(1,n):
-        star2=' '*(n-1-i)+'*'+' '*(i*2-1)+'*'
-        print(star2)
-
-if __name__ == "__main__":
-    star()
