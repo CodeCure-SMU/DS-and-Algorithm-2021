@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+
+#define Buffer 1000
+
+void Swap(int arr[], int down, int pivot) {
+	int temp;
+	temp = arr[down];
+	arr[down] = arr[pivot];
+	arr[pivot] = temp;
+}
+
+int Partition(int arr[], int left, int right) {
+	int pivot = arr[left];
+	int low = left + 1;
+	int high = right;
+
+	while (low <= high) {
+		while (pivot >= arr[low] && low <= right) low++;
+		while (pivot <= arr[high] && high >= (left + 1))high--;
+
+		if (low <= high)
+			Swap(arr, low, high);
+	}
+	Swap(arr, left, high);
+	return high;
+}
+
+void QuickSort(int arr[], int left, int right) {
+	int p;
+	
+	if (left <= right) {
+		p = Partition(arr, left, right);
+
+		QuickSort(arr, left, p - 1);
+		QuickSort(arr, p + 1, right);
+	}
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+	int n;
+	int arr[Buffer];
+
+	cin >> n;
+
+	for (int i = 0; i < n; i++) {
+		cin >> arr[i];
+	}
+
+	QuickSort(arr, 0, n-1);
+
+	for (int i = 0; i < n; i++) cout << arr[i] << '\n';
+}
